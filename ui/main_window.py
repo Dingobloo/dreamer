@@ -56,7 +56,7 @@ class MainWindow(QtGui.QMainWindow):
 
         print("We evaluated jQuery")
 
-        self._web_view.page().mainFrame().evaluateJavaScript("$( 'h1.header' ).css( '-webkit-transition', '-webkit-transform 2s'); $( 'h1.header' ).css('-webkit-transform', 'rotate(360deg)')")
+        self._web_view.page().mainFrame().evaluateJavaScript("$( 'div.header' ).css( '-webkit-transition', '-webkit-transform 2s'); $( 'div.header' ).css('-webkit-transform', 'rotate(360deg)')")
 
         print("Run some simple jQuery")
 
