@@ -11,6 +11,7 @@ from pyside_dynamic import loadUi
 import ui
 from layer_widget import LayerWidget
 from page_widget import PageWidget
+from dream_web_view import DreamWebView
 
 ui_file_name = 'main_window.ui'
 
@@ -26,7 +27,7 @@ class MainWindow(QtGui.QMainWindow):
         self._layer_widget = LayerWidget(self)
         self.layer_dock.setWidget(self._layer_widget)
 
-        self._web_view = QWebView(self)
+        self._web_view = DreamWebView(self)
         self._web_view.setUrl(":ui/resources/startup.html")
         self.setCentralWidget(self._web_view)
 
@@ -34,7 +35,7 @@ class MainWindow(QtGui.QMainWindow):
 
         #self.propertiesTable.setModel(self)
         item = PropertiesItemModel(self)
-        print(dir(item))
+        #print(dir(item))
 
     def webLoadFinished(self, loaded):
         print("We loaded a web page")
@@ -55,7 +56,7 @@ class MainWindow(QtGui.QMainWindow):
 
         print("We evaluated jQuery")
 
-        self._web_view.page().mainFrame().evaluateJavaScript("$( 'h1.header' ).css( '-webkit-transition', '-webkit-transform 2s'); $( 'h1.header' ).css('-webkit-transform', 'rotate(180deg)')")
+        self._web_view.page().mainFrame().evaluateJavaScript("$( 'h1.header' ).css( '-webkit-transition', '-webkit-transform 2s'); $( 'h1.header' ).css('-webkit-transform', 'rotate(360deg)')")
 
         print("Run some simple jQuery")
 
