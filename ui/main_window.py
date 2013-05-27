@@ -12,6 +12,7 @@ import ui
 from layer_widget import LayerWidget
 from page_widget import PageWidget
 from dream_web_view import DreamWebView
+from translate_tool import TranslateTool
 
 ui_file_name = 'main_window.ui'
 
@@ -35,7 +36,18 @@ class MainWindow(QtGui.QMainWindow):
 
         #self.propertiesTable.setModel(self)
         item = PropertiesItemModel(self)
+
+        self.current_tool = TranslateTool(self._web_view)
         #print(dir(item))
+
+        self.buttonNoTool.pressed.connect(self.buttonNonePressed)
+        self.buttonMoveTool.pressed.connect(self.buttonMovePressed)
+
+    def buttonNonePressed(self):
+        self.current_tool = None
+
+    def buttonMovePressed(self):
+        self.current_tool = TranslateTool(self._web_view)
 
     def webLoadFinished(self, loaded):
         print("We loaded a web page")

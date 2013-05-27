@@ -7,33 +7,34 @@ from pyside_dynamic import loadUi
 import ui
 
 class DreamWebView (QWebView):
+    #Need to expose the mouse events as signals to loosely couple the tools to the view
+    mousePressSignal = QtCore.Signal(QtGui.QMouseEvent)
+    mouseMoveSignal = QtCore.Signal(QtGui.QMouseEvent)
+    mouseReleaseSignal = QtCore.Signal(QtGui.QMouseEvent)
+
     def __init__(self,*args):
         QWebView.__init__(self)
-        print("initialized a web view")
-        self._mouseMove = False
-        self.mouseX = 0
-        self.mouseY = 0
+        #self._mouseMove = False
+        #self.mouseX = 0
+        #self.mouseY = 0
 
     def mousePressEvent(self, event):
-        self._mouseMove = True
-        self.document = self.page().mainFrame().documentElement()
-        self.element = self.document.findFirst("div.header")
-        self.mouseX = self.mouseX - event.x()
-        self.mouseY = self.mouseY - event.y()
-        #self.element.setAttribute("style", "background-color: #f0f090");
-        #I'd like to convert this to non-jquery accessing the CSS directly through it's element eventually.
-        #self.page().mainFrame().evaluateJavaScript( "$( 'div.header' ).css('position','absolute'); \
-        #                                             $( 'div.header' ).css('left'," + str(event.x()) + ");" +
-        #                                            "$( 'div.header' ).css('top',"+str(event.y()) + ");")
+        self.mousePressSignal.emit(event);
+        #self._mouseMove = True
+        #self.document = self.page().mainFrame().documentElement()
+        #self.element = self.document.findFirst("div.header")
+        #self.mouseX = self.mouseX - event.x()
+        #self.mouseY = self.mouseY - event.y()
 
     def mouseMoveEvent(self, event):
-        if self._mouseMove:
-            self.element.setAttribute("style","position: absolute; left: " + str(event.x() + self.mouseX) + "; top: " + str(event.y() + self.mouseY) + ";")
-            #self.page().mainFrame().evaluateJavaScript( "$( 'div.header' ).css('position','absolute'); \
-            #                                             $( 'div.header' ).css('left'," + str(event.x()) + ");" +
-            #                                            "$( 'div.header' ).css('top',"+str(event.y()) + ");")
+        self.mouseMoveSignal.emit(event);
+        #if self._mouseMove:
+            #self.element.setStyleProperty("position", "absolute")
+            #self.element.setStyleProperty("left", str(event.x() + self.mouseX))
+            #self.element.setStyleProperty("top",  str(event.y() + self.mouseY))
+
     def mouseReleaseEvent(self, event):
-        #print("Coordinates: " + str(event.x()) + "," + str(event.y()))
-        self.mouseX = event.x() + self.mouseX
-        self.mouseY = event.y() + self.mouseY
-        self._mouseMove = False;
+        self.mouseReleaseSignal.emit(event);
+        #self.mouseX = event.x() + self.mouseX
+        #self.mouseY = event.y() + self.mouseY
+        #self._mouseMove = False;
