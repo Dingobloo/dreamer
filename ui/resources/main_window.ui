@@ -327,9 +327,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>action_open</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>_on_action_open_document()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>_on_action_new_layer()</slot>
   <slot>_on_action_save_document()</slot>
+  <slot>_on_action_open_document()</slot>
  </slots>
 </ui>

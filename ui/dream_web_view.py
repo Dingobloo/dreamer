@@ -6,6 +6,7 @@ from PySide.QtWebKit import QWebElement
 from pyside_dynamic import loadUi
 import ui
 
+#this view will also need to take care of syncing the layer models with itself (content, positions, etc)
 class DreamWebView (QWebView):
     #Need to expose the mouse events as signals to loosely couple the tools to the view
     mousePressSignal = QtCore.Signal(QtGui.QMouseEvent)

@@ -22,6 +22,7 @@ from layer_widget import LayerListModel
 from layer_widget import Layer
 
 from util.dreamer_writer import DreamerWriter
+from util.dreamer_reader import DreamerReader
 
 ui_file_name = 'main_window.ui'
 
@@ -107,6 +108,8 @@ class MainWindow(QtGui.QMainWindow):
     @QtCore.Slot()
     def _on_action_open_document(self):
         print("Loading Document...")
+        reader = DreamerReader()
+        reader.read()
 
 
 

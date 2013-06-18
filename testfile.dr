@@ -1,0 +1,46 @@
+Version 1.0
+Story Name
+    Page:
+        Page01
+
+        255 255 255
+
+
+        Instances:
+            Layer01
+            0 0
+            100 100
+            http://somelink.com
+            First Comment
+            Layer02
+            0 0
+            200 200
+
+            Another Test Instance
+    Page:
+        Page02
+
+        255 255 255
+
+
+        Instances:
+            Layer01
+            0 0
+            300 300
+
+            Third Instance Comment
+    Layer:
+        Layer01
+        Testing Layer
+
+
+        0 0
+        200 200
+
+    Layer:
+        Layer02
+        Second Layer
+
+
+        0 0
+        200 200

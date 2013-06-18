@@ -23,7 +23,6 @@ class LayerWidget(QtGui.QWidget):
         #self.layer_model.setData(2, 'HI')
         self.layer_model.addItem('pleh')
 
-
 class LayerListModel(QtCore.QAbstractListModel):
     def __init__(self, layers, parent=None):
         QtCore.QAbstractListModel.__init__(self, parent)
@@ -38,6 +37,7 @@ class LayerListModel(QtCore.QAbstractListModel):
     def rowCount(self, parent):
         return len(self._layers)
 
+    #Necessary in an editable model
     def flags(self, index):
         if(not index.isValid()):
             return QtCore.Qt.ItemIsEnabled
@@ -59,6 +59,8 @@ class LayerListModel(QtCore.QAbstractListModel):
 class Layer:
     def __init__(self, layerName):
         self._layer_name = layerName
+        self._x =0
+        self._y=0
 
     @property
     def layer_name(self):
@@ -67,4 +69,28 @@ class Layer:
     @layer_name.setter
     def layer_name(self, value):
         self._layer_name = value
+
+    @property
+    def x(self):
+        return self._x
+
+    @x.setter
+    def x(self, value):
+        self._x = value
+
+    @property
+    def y(self):
+        return self._y
+
+    @y.setter
+    def y(self, value):
+        self._y = value
+
+    def setPosition(self, x, y):
+        self._x = x
+        self._y = y
+
+
+
+
 
