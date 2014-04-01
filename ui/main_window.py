@@ -45,6 +45,7 @@ class MainWindow(QtGui.QMainWindow):
         #Web View Initialisation
         self._web_view = DreamWebView(self)
         self._web_view.setUrl(":ui/resources/startup.html")
+        #self._web_view.setUrl("")
         self.setCentralWidget(self._web_view)
 
         self._web_view.loadFinished.connect(self.webLoadFinished)
@@ -109,7 +110,8 @@ class MainWindow(QtGui.QMainWindow):
     def _on_action_open_document(self):
         print("Loading Document...")
         reader = DreamerReader()
-        reader.read()
+        document = reader.read()
+        print("We got a story named: " + document.StoryName)
 
 
 
